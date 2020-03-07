@@ -20,11 +20,22 @@ def getKey():
             print("Please enter a valid number.")
 
 def getTranslatedMessage(mode, message, key):
-    
+    newMessage = ""
+    if mode == "encrypt":
+        for i in message:
+            symbol = SYMBOLS.find(i) + key
+            if symbol != SYMBOLS:
+                message += i
+            else:
+                newMessage += SYMBOLS.find(symbol)
+    else:
+        key = -key
+        for i in message:
+            symbol = SYMBOLS.find(i) + key
+            if symbol != SYMBOLS:
+                message += i
+            else:
+                newMessage += SYMBOLS.find(symbol)
+    return newMessage
 
-
-
-
-print(getMode())
-print(getMessage())
-print(getKey())
+print(getTranslatedMessage(getMode(), getMessage(), getKey()))
